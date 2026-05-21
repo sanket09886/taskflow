@@ -4,18 +4,18 @@ import { cn } from "../lib/utils";
 
 export function Button({ className, variant = "primary", ...props }) {
   const variants = {
-    primary: "bg-primary text-white hover:bg-indigo-500",
+    primary: "bg-primary text-white shadow-sm shadow-indigo-500/20 hover:bg-indigo-500",
     secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
     ghost: "bg-transparent text-slate-700 hover:bg-slate-100",
     danger: "bg-red-600 text-white hover:bg-red-500"
   };
-  return <button className={cn("inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60", variants[variant], className)} {...props} />;
+  return <button className={cn("inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60", variants[variant], className)} {...props} />;
 }
 
 export function Input({ className, error, ...props }) {
   return (
     <div className="space-y-1">
-      <input className={cn("h-10 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-indigo-100", className)} {...props} />
+      <input className={cn("h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-indigo-100", className)} {...props} />
       {error ? <p className="text-xs font-medium text-red-600">{error}</p> : null}
     </div>
   );
@@ -42,7 +42,7 @@ export function Select({ className, error, children, ...props }) {
 }
 
 export const Card = forwardRef(function Card({ className, ...props }, ref) {
-  return <div ref={ref} className={cn("rounded-lg border border-slate-200 bg-white shadow-soft", className)} {...props} />;
+  return <div ref={ref} className={cn("rounded-lg border border-white/70 bg-white/90 shadow-soft backdrop-blur", className)} {...props} />;
 });
 
 export function Badge({ className, children }) {

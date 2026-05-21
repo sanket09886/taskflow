@@ -14,11 +14,11 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-20 border-b border-white/60 bg-white/80 shadow-sm backdrop-blur-xl">
+      <div className="flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
         <div>
-          <p className="text-sm text-slate-500">Team task manager</p>
-          <h1 className="text-lg font-bold text-slate-950">Welcome, {user?.name}</h1>
+          <p className="text-sm font-semibold text-indigo-600">Team task manager</p>
+          <h1 className="text-xl font-black text-slate-950">Welcome, {user?.name}</h1>
         </div>
         <div className="flex items-center gap-3">
           <Avatar name={initials(user?.name)} />
