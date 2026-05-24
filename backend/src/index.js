@@ -14,9 +14,29 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5173";
+const allowedOrigins = new Set([
+  frontendUrl,
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://taskflow-production-a0db.up.railway.app"
+]);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.has(origin)) return true;
+  return /^https:\/\/[a-z0-9-]+\.up\.railway\.app$/i.test(origin);
+};
 
 app.use(helmet());
-app.use(cors({ origin: frontendUrl, credentials: true }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (isAllowedOrigin(origin)) return callback(null, true);
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true
+  })
+);
 app.use(express.json({ limit: "1mb" }));
 app.use(morgan("dev"));
 
